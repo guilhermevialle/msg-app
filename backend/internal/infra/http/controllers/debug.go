@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"app/backend/internal/infra/repositories"
+	"app/internal/infra/repositories"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

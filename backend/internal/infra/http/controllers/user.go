@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"app/backend/internal/application/use_cases"
-	"app/backend/internal/infra/http/utils"
+	"app/internal/application/use_cases"
+	"app/internal/dtos"
+	"app/internal/infra/http/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -36,5 +37,9 @@ func (uc *UserController) GetProfile(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, p)
+	c.JSON(http.StatusOK,
+		&dtos.UserProfileResponseDto{
+			Bio:       p.Bio,
+			AvatarUrl: p.AvatarUrl,
+		})
 }

@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	infra_services "app/backend/internal/infra/services"
+	infra_services "app/internal/infra/services"
 	"net/http"
 	"strings"
 

@@ -1,11 +1,11 @@
 package app_services
 
 import (
-	dtos "app/backend/internal"
-	"app/backend/internal/domain/entities"
-	env "app/backend/internal/infra"
-	"app/backend/internal/infra/repositories"
-	infra_services "app/backend/internal/infra/services"
+	"app/internal/domain/entities"
+	"app/internal/dtos"
+	env "app/internal/infra"
+	"app/internal/infra/repositories"
+	infra_services "app/internal/infra/services"
 	"errors"
 )
 

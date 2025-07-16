@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	dtos "app/backend/internal"
-	"app/backend/internal/application/use_cases"
-	"app/backend/internal/infra/http/utils"
+	"app/internal/application/use_cases"
+	"app/internal/dtos"
+	"app/internal/infra/http/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -13,12 +13,14 @@ type IPostController interface {
 	CreateUserPost(c *gin.Context)
 	LikeUserPost(c *gin.Context)
 	CreateCommentOnPost(c *gin.Context)
+	GetPosts(c *gin.Context)
 }
 
 type PostController struct {
-	CreatePost       *use_cases.CreatePost
-	LikePost         *use_cases.LikePost
-	AddCommentToPost *use_cases.AddCommentToPost
+	createPost       *use_cases.CreatePost
+	likePost         *use_cases.LikePost
+	addCommentToPost *use_cases.AddCommentToPost
+	getAllPosts      *use_cases.GetAllPosts
 }
 
 var _ IPostController = (*PostController)(nil)
@@ -27,11 +29,13 @@ func NewPostController(
 	cp *use_cases.CreatePost,
 	lp *use_cases.LikePost,
 	actp *use_cases.AddCommentToPost,
+	gap *use_cases.GetAllPosts,
 ) *PostController {
 	return &PostController{
-		CreatePost:       cp,
-		LikePost:         lp,
-		AddCommentToPost: actp,
+		createPost:       cp,
+		likePost:         lp,
+		addCommentToPost: actp,
+		getAllPosts:      gap,
 	}
 }
 
@@ -48,7 +52,7 @@ func (pc *PostController) CreateUserPost(c *gin.Context) {
 		return
 	}
 
-	p, err := pc.CreatePost.Execute(id, body.Content)
+	p, err := pc.createPost.Execute(id, body.Content)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -69,7 +73,7 @@ func (pc *PostController) LikeUserPost(c *gin.Context) {
 		return
 	}
 
-	err := pc.LikePost.Execute(id, postId)
+	err := pc.likePost.Execute(id, postId)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -102,11 +106,16 @@ func (pc *PostController) CreateCommentOnPost(c *gin.Context) {
 		return
 	}
 
-	comment, err := pc.AddCommentToPost.Execute(id, postId, body.Content)
+	comment, err := pc.addCommentToPost.Execute(id, postId, body.Content)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, comment)
+}
+
+func (pc *PostController) GetPosts(c *gin.Context) {
+	posts := pc.getAllPosts.Execute()
+	c.JSON(http.StatusOK, posts)
 }

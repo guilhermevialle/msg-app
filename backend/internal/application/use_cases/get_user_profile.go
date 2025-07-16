@@ -1,8 +1,8 @@
 package use_cases
 
 import (
-	"app/backend/internal/domain/entities"
-	"app/backend/internal/infra/repositories"
+	"app/internal/domain/entities"
+	"app/internal/infra/repositories"
 	"errors"
 )
 

@@ -1,8 +1,8 @@
 package api
 
 import (
-	"app/backend/internal/application/di"
-	"app/backend/internal/infra/http/routes"
+	"app/internal/application/di"
+	"app/internal/infra/http/routes"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"

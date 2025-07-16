@@ -1,6 +1,6 @@
 package repositories
 
-import "app/backend/internal/domain/entities"
+import "app/internal/domain/entities"
 
 type IUserRepository interface {
 	Save(user *entities.User)

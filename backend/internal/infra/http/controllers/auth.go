@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	dtos "app/backend/internal"
-	app_services "app/backend/internal/application/services"
+	app_services "app/internal/application/services"
+	"app/internal/dtos"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

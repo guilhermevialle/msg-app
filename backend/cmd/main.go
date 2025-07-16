@@ -1,6 +1,6 @@
 package main
 
-import "app/backend/internal/api"
+import "app/internal/api"
 
 func main() {
 	api.RunServer()

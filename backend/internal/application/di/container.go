@@ -1,13 +1,13 @@
 package di
 
 import (
-	app_services "app/backend/internal/application/services"
-	"app/backend/internal/application/use_cases"
-	env "app/backend/internal/infra"
-	"app/backend/internal/infra/http/controllers"
-	"app/backend/internal/infra/http/middlewares"
-	"app/backend/internal/infra/repositories"
-	infra_services "app/backend/internal/infra/services"
+	app_services "app/internal/application/services"
+	"app/internal/application/use_cases"
+	env "app/internal/infra"
+	"app/internal/infra/http/controllers"
+	"app/internal/infra/http/middlewares"
+	"app/internal/infra/repositories"
+	infra_services "app/internal/infra/services"
 )
 
 type Container struct {
@@ -30,7 +30,8 @@ func NewContainer() *Container {
 	cp := use_cases.NewCreatePost(ur, pr)
 	lp := use_cases.NewLikePost(pr, ur)
 	actp := use_cases.NewAddCommentToPost(ur, pr)
-	pc := controllers.NewPostController(cp, lp, actp)
+	gap := use_cases.NewGetAllPosts(pr)
+	pc := controllers.NewPostController(cp, lp, actp, gap)
 	dc := controllers.NewDebugController(ur, pr)
 
 	// use cases

@@ -1,7 +1,7 @@
 package use_cases
 
 import (
-	"app/backend/internal/infra/repositories"
+	"app/internal/infra/repositories"
 	"errors"
 	"fmt"
 )
