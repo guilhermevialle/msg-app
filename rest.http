@@ -1,0 +1,52 @@
+// Register
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "guivialle",
+  "email": "guivialle@gmail.com",
+  "password": "123456"
+}
+###
+
+// Authenticate
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "login": "guivialle",
+  "password": "123456"
+}
+###
+
+// Get me data
+GET http://localhost:8080/me/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0Iiwic3ViIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0IiwiZXhwIjoxNzUyNjM3ODAwLCJpYXQiOjE3NTI2Mzc2MjB9.adma5g4L8laivJo_iFuq2ZgnxZ6eRHIzyREOHMqumhY
+
+###
+
+// Publish a post
+POST http://localhost:8080/post/new
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0Iiwic3ViIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0IiwiZXhwIjoxNzUyNjM3ODAwLCJpYXQiOjE3NTI2Mzc2MjB9.adma5g4L8laivJo_iFuq2ZgnxZ6eRHIzyREOHMqumhY
+
+{
+  "content": "My first post in this app!"
+}
+
+###
+
+GET http://localhost:8080/post/hl-hYHwRcXP7OWk8aMuhF/like
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0Iiwic3ViIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0IiwiZXhwIjoxNzUyNjM3ODAwLCJpYXQiOjE3NTI2Mzc2MjB9.adma5g4L8laivJo_iFuq2ZgnxZ6eRHIzyREOHMqumhY
+###
+
+POST http://localhost:8080/post/hl-hYHwRcXP7OWk8aMuhF/comment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0Iiwic3ViIjoiczNRcTBLNGdKLWZ1enNzQUJUVWQ0IiwiZXhwIjoxNzUyNjM3ODAwLCJpYXQiOjE3NTI2Mzc2MjB9.adma5g4L8laivJo_iFuq2ZgnxZ6eRHIzyREOHMqumhY
+
+{
+  "content": "seila vim comentar kkk"
+}
+
+###
+GET http://localhost:8080/debug
